@@ -13,15 +13,15 @@ pub trait UdpSocket {
     type Error;
 
     /// Connect to remote peer.
-    async fn connect<A>(addr: A) -> Result<(), Self::Error>
+    async fn connect<A>(&self, addr: A) -> Result<(), Self::Error>
     where
         A: ToSocketAddrs<Self::SA4, Self::SA6>;
 
     /// Send data to remote.
-    async fn send<B>(buffer: B) -> Result<(), Self::Error>;
+    async fn send<B>(&self, buffer: B) -> Result<(), Self::Error>;
 
     /// Recv data from remote.
-    async fn recv<B>() -> Result<B, Self::Error>;
+    async fn recv<B>(&self) -> Result<B, Self::Error>;
 }
 
 #[async_trait]
