@@ -32,7 +32,7 @@ pub trait UdpServer {
 
     type Error;
 
-    type BindResult;
+    type BindResult: UdpSocket;
 
     async fn bind<A>(addr: A) -> Result<Self::BindResult, Self::Error>
     where
