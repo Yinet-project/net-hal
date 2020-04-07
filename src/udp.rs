@@ -2,7 +2,7 @@ use addr_hal::{SocketAddressV4, SocketAddressV6, ToSocketAddrs};
 use async_trait::async_trait;
 
 #[async_trait]
-pub trait UdpHandler {
+pub trait UdpSocket {
     /// need specific type for SocketAddressV4.
     type SA4: SocketAddressV4;
 
@@ -32,8 +32,9 @@ pub trait UdpServer {
 
     type Error;
 
-    async fn bind<A, U>(addr: A) -> Result<U, Self::Error>
+    type BindResult;
+
+    async fn bind<A>(addr: A) -> Result<Self::BindResult, Self::Error>
     where
-        A: ToSocketAddrs<Self::SA4, Self::SA6>,
-        U: UdpHandler;
+        A: ToSocketAddrs<Self::SA4, Self::SA6>;
 }
