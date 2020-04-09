@@ -32,5 +32,5 @@ pub trait UdpServer {
 
     type BindResult: UdpSocket;
 
-    async fn bind(addr: &[SocketAddr<Self::SA4, Self::SA6>]) -> Result<Self::BindResult, Self::Error>;
+    async fn bind(addr: SocketAddr<Self::SA4, Self::SA6>) -> Result<Self::BindResult, Self::Error>;
 }
