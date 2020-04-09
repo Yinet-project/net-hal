@@ -13,7 +13,7 @@ pub trait UdpSocket {
     type Error;
 
     /// Connect to remote peer.
-    async fn connect(&self, addr: &[SocketAddr<Self::SA4, Self::SA6>]) -> Result<(), Self::Error>;
+    async fn connect(&self, addr: SocketAddr<Self::SA4, Self::SA6>) -> Result<(), Self::Error>;
 
     /// Send data to remote.
     async fn send(&mut self, buffer: &[u8]) -> Result<usize, Self::Error>;
