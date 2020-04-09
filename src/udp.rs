@@ -1,4 +1,4 @@
-use addr_hal::{SocketAddressV4, SocketAddressV6, ToSocketAddrs, SocketAddr};
+use addr_hal::{SocketAddressV4, SocketAddressV6, SocketAddr};
 use async_trait::async_trait;
 
 #[async_trait]
@@ -13,7 +13,7 @@ pub trait UdpSocket {
     type Error;
 
     /// Connect to remote peer.
-    async fn connect(&self, addr: SocketAddr<Self::SA4, Self::SA6>) -> Result<(), Self::Error>;
+    async fn connect(&self, addr: &[SocketAddr<Self::SA4, Self::SA6>]) -> Result<(), Self::Error>;
 
     /// Send data to remote.
     async fn send(&mut self, buffer: &[u8]) -> Result<usize, Self::Error>;
@@ -32,5 +32,5 @@ pub trait UdpServer {
 
     type BindResult: UdpSocket;
 
-    async fn bind(addr: SocketAddr<Self::SA4, Self::SA6>) -> Result<Self::BindResult, Self::Error>;
+    async fn bind(addr: &[SocketAddr<Self::SA4, Self::SA6>]) -> Result<Self::BindResult, Self::Error>;
 }
