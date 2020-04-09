@@ -16,10 +16,10 @@ pub trait UdpSocket {
     async fn connect(&self, addr: SocketAddr<Self::SA4, Self::SA6>) -> Result<(), Self::Error>;
 
     /// Send data to remote.
-    async fn send(&self, buffer: &[u8]) -> Result<usize, Self::Error>;
+    async fn send(&mut self, buffer: &[u8]) -> Result<usize, Self::Error>;
 
     /// Recv data from remote.
-    async fn recv(&self, buffer: &mut [u8]) -> Result<usize, Self::Error>;
+    async fn recv(&mut self, buffer: &mut [u8]) -> Result<usize, Self::Error>;
 }
 
 #[async_trait]
