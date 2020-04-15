@@ -9,3 +9,8 @@ edition = "2018"
 [dependencies]
 addr-hal = { git = "https://github.com/Yinet-project/addr-hal" }
 async-trait = "0.1"
+
+[dev-dependencies.cargo-husky]
+version = "1"
+default-features = false
+features = ["precommit-hook", "run-cargo-fmt", "run-cargo-test", "run-cargo-clippy"]
